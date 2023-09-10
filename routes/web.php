@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\IsActiveMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,17 +25,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::middleware(['is_active'])->group(function () {
 
-Route::post('/products', [ProductController::class, 'store']);
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 
-Route::get('/products/{product}/edit',[ProductController::class, 'edit'])->name('products.update');
+    Route::post('/products', [ProductController::class, 'store']);
 
-Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.update');
 
-Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.edit');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-Route::patch('/products/{product}/restore', [ProductController::class, 'restore'])->name('products.restore');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.edit');
 
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+    Route::patch('/products/{product}/restore', [ProductController::class, 'restore'])->name('products.restore');
 
+    Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
+});

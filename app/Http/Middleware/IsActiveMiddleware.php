@@ -18,18 +18,15 @@ class IsActiveMiddleware
     {
          // Check if the user is logged in
          if (Auth::check()) {
+            // dd(Auth::user());
             // Check if the user is active
             if (Auth::user()->is_active) {
                 return $next($request);
             } else {
                 // Redirect or respond with an error message if the user is not active
-                return 'inactive-account';
+                return redirect()->route('login');
                 // You can define the 'inactive-account' route in your routes file
             }
         }
-
-        // If the user is not logged in, you can handle it as needed
-        // For example, you can redirect to the login page
-        return redirect()->route('login');
     }
 }

@@ -63,7 +63,6 @@ class ControllerRepository implements ControllerInterface
         ]);
         // Create and associate the product image
         $productImage = new ProductImage(['image' => $path]);
-        // Storage::disk("")
         $product->images()->save($productImage);
 
         // iterate over each color and create a new product color instance
