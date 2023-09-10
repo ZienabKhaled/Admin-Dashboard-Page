@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 @section('urlToTailwind')
     <!-- add tailwind css -->
     @vite('resources/css/app.css')
 @endsection
 
 @section('content')
-    <div class="this grid lg:grid-cols-4 md:grid-cols-2">
+    <div class=" grid lg:grid-cols-4 md:grid-cols-2">
         <!-- component -->
 
         <div
-            class=" mx-auto mt-11 h-100 bg-gray-100 w-80 transform overflow-hidden rounded-lg dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+            class=" mx-auto mt-11 h-90 bg-gray-100 w-80 transform overflow-hidden rounded-lg dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
             <a href="{{ route('products.create') }}">
                 <button class="bg-black h-full w-full h-20 text-white text-2xl"> Add A new Product </button>
             </a>
@@ -23,9 +25,9 @@
         {{ $product->trashed() ? 'opacity-50' : '' }}">
 
                 <a href="{{ $product->trashed() ? '' : route('products.show', $product->id) }}">
-                    @if ($product->images->isNotEmpty())
+                    @if ($product->image)
                         <img class="h-48 w-full object-cover object-center"
-                            src="{{ strstr($product->images->first()->image, 'via.placeholder.com') ? $product->images->first()->image : Storage::url($product->images->first()->image) }}"
+                            src="{{ strstr($product->image->image, 'via.placeholder.com') ? $product->image->image: Storage::url($product->image->image) }}"
                             alt="Product Image" />
                     @else
                         <img class="h-48 w-full object-cover object-center"
@@ -94,4 +96,6 @@
 @section('scripts')
     <script src="/dist/flowbite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 @endsection

@@ -8,6 +8,7 @@ use App\Models\ProductColor;
 use App\Models\ProductImage;
 use App\Http\Requests\StoreRequest;
 use App\Http\Requests\UpdateRequest;
+use DataTables;
 
 
 class ControllerRepository implements ControllerInterface
@@ -63,7 +64,8 @@ class ControllerRepository implements ControllerInterface
         ]);
         // Create and associate the product image
         $productImage = new ProductImage(['image' => $path]);
-        $product->images()->save($productImage);
+        // $product->image = $productImage;
+        $product->image()->save($productImage);
 
         // iterate over each color and create a new product color instance
         foreach ($uniqueColors as $color) {
@@ -77,12 +79,18 @@ class ControllerRepository implements ControllerInterface
 
     public function update(UpdateRequest $request, $productId)
     {
-        $product = Product::findOrFail($productId);
+    $product = Product::findOrFail($productId);
 
-        if ($request->hasFile('image')) {
+    if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public');
+            // dd($product->image);
+            // dd($path);
             $productImage = new ProductImage(['image' => $path]);
-            $product->images()->save($productImage);
+            //$oldImage = $product->image();
+            // Storage::delete($oldImage->image);
+            $product->image()->save($productImage);
+            // $productImage
+            // $productImage->save();
         }
 
         // Update other product inputs

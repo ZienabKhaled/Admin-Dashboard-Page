@@ -24,8 +24,7 @@ class IsActiveMiddleware
                 return $next($request);
             } else {
                 // Redirect or respond with an error message if the user is not active
-                return redirect()->route('login');
-                // You can define the 'inactive-account' route in your routes file
+                return redirect()->route('register');
             }
         }
     }

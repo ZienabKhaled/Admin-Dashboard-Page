@@ -7,6 +7,9 @@ use App\Repositories\ControllerRepository;
 use App\Http\Requests\StoreRequest;
 use App\Http\Requests\UpdateRequest;
 use App\Repositories\ControllerInterface;
+use Yajra\DataTables\DataTables;
+use Symfony\Component\HttpFoundation\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -26,6 +29,7 @@ class ProductController extends Controller
             'products'=>$allProducts,
         ]);
     }
+
 
     //show one product
     public function show($productId)

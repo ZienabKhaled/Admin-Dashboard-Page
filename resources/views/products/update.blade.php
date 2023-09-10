@@ -30,9 +30,9 @@
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
             <div class="text-gray-600">
                 <form >
-                    @if($product->images->isNotEmpty())
+                    @if($product->image)
               <img
-              src="{{ strstr($product->images->first()->image, 'via.placeholder.com') ? $product->images->first()->image : Storage::url($product->images->first()->image) }}"
+              src="{{ strstr($product->image->image, 'via.placeholder.com') ? $product->image->image : Storage::url($product->image->image) }}"
               >
               @else
               <img

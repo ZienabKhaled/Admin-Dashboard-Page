@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\YajraController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsActiveMiddleware;
 
@@ -21,11 +22,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [ProductController::class, 'index'])->name('home');
 
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+// Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 Route::middleware(['is_active'])->group(function () {
+
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
 
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 
@@ -41,4 +45,6 @@ Route::middleware(['is_active'])->group(function () {
 
     Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
+    // Route::get('/products', [YajraController::class, 'indexYajra'])->name('products.yajra');
 });
+

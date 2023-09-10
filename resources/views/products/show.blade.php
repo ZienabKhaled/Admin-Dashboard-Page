@@ -15,8 +15,8 @@
                 <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                         <div class="text-gray-600">
-                            @if ($product->images->first())
-                                    <img src="{{ strstr($product->images->first()->image, 'via.placeholder.com') ? $product->images->first()->image : Storage::url($product->images->first()->image) }}"
+                            @if ($product->image)
+                                    <img src="{{ strstr($product->image->image, 'via.placeholder.com') ? $product->image->image : Storage::url($product->image->image) }}"
                                         alt="image">
                                 @else
                                     <img class="h-48 w-full object-cover object-center"

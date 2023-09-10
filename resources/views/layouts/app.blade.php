@@ -1,8 +1,11 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+<meta name="csrf-token" content=" {{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     @yield('urlToTailwind')
 
@@ -15,14 +18,15 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <!-- Include Spectrum Color Picker CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+        <!-- Include Spectrum Color Picker CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
 
-<!-- Include jQuery (required for Spectrum Color Picker) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include jQuery (required for Spectrum Color Picker) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Include Spectrum Color Picker JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+    <!-- Include Spectrum Color Picker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+
 
 
 </head>
@@ -89,7 +93,7 @@
             @yield('content')
         </main>
     </div>
-
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
     @yield('scripts')
 </body>
 </html>
