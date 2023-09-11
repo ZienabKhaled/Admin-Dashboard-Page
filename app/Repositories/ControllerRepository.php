@@ -18,7 +18,6 @@ class ControllerRepository implements ControllerInterface
     public function getAllProducts()
     {
         return Product::withTrashed()->orderBy('created_at', 'desc')->get();
-        //return Product::withTrashed()->orderBy('created_at', 'desc')->orderBy('deleted_at', 'asc')->get();
 
     }
 
@@ -29,6 +28,14 @@ class ControllerRepository implements ControllerInterface
         return Product::findOrFail($productId);
     }
 
+   /**
+    * The function stores a product in the database along with its image, colors, and offer details.
+    *
+    * @param StoreRequest request The  parameter is an instance of the StoreRequest class,
+    * which is used to validate and retrieve the data sent in the HTTP request.
+    *
+    * @return the created product.
+    */
     //store one product
     public function store(StoreRequest $request)
     {
@@ -77,6 +84,16 @@ class ControllerRepository implements ControllerInterface
         return $product;
     }
 
+/**
+ * The function updates a product's information, including its image, name, description, price, offer
+ * status, offer value, and associated colors.
+ *
+ * @param UpdateRequest request The  parameter is an instance of the UpdateRequest class, which
+ * is used to validate and retrieve the data sent in the HTTP request.
+ * @param productId The  parameter is the ID of the product that needs to be updated.
+ *
+ * @return the updated product.
+ */
 
     public function update(UpdateRequest $request, $productId)
     {
