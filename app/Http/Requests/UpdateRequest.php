@@ -22,11 +22,11 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255', // Name is required and should be a string with a maximum of 255 characters.
-            'description' => 'required|string', // Description is required and should be a string.
-            'price' => 'required|string', // Price is required and should be a numeric value.
-            'color' => 'nullable|string|size:7', // Color should be a string of exactly 7 characters or can be nullable.
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Image s
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|string',
+            'color' => 'nullable|string|size:7',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ];
     }
 }

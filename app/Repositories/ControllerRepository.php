@@ -9,6 +9,7 @@ use App\Models\ProductImage;
 use App\Http\Requests\StoreRequest;
 use App\Http\Requests\UpdateRequest;
 use DataTables;
+use Spatie\Backtrace\File;
 
 
 class ControllerRepository implements ControllerInterface
@@ -83,14 +84,17 @@ class ControllerRepository implements ControllerInterface
 
     if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public');
-            // dd($product->image);
-            // dd($path);
             $productImage = new ProductImage(['image' => $path]);
-            //$oldImage = $product->image();
-            // Storage::delete($oldImage->image);
+
+            if ($product->image){
+                // Storage::delete($product->image);
+                $oldImagePath = storage_path('app/' . $product->image->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath); // Delete the old image file
+                }
+                $product->image->delete();
+            }
             $product->image()->save($productImage);
-            // $productImage
-            // $productImage->save();
         }
 
         // Update other product inputs
